@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML5 Pacman</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <style type="text/css">
+
+      @font-face {
+  	    font-family: 'Press_Start_2P';
+          src: url('PressStart2P-Regular.ttf') format('truetype');
+  	    font-weight: normal;
+  	    font-style: normal;
+      }
+
+      #pacman {
+        width:342px;
+        margin:20px auto;
+      }
+
+      #shim {
+        font-family: BDCartoonShoutRegular;
+        position:absolute;
+        visibility:hidden
+      }
+
+      .pacman-game {
+        margin-top: 100px;
+        color: #fff;
+      }
+      html {
+        background: #000;
+      }
+      body { width:342px; margin:0px auto; font-family:'Press_Start_2P', cursive; }
+      canvas {
+        font-family:'Press Start 2P', cursive;
+      }
+      a { text-decoration:none; }
+
+      #mylog {
+        background: red;
+        color: white;
+      }
+    </style>
+
+</head>
+
+<body>
+
+  <div id="shim">shim for font face</div>
+  <div id="mylog">
+
+  </div>
+  <div class="pacman-game">
+    Pacman game
+  </div>
+
+  <div style="margin-top: 100px;" id="pacman"></div>
+  <script src="dist/build.js" type="text/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    var former = console.log;
+      console.log = function(msg){
+          former(msg);  //maintains existing logging via the console.
+          $("#mylog").append("<div>" + msg + "</div>");
+      }
+
+      window.onerror = function(message, url, linenumber) {
+          console.log("JavaScript error: " + message + " on line " +
+                  linenumber + " for " + url);
+      }
+  </script>
+</body>
+</html>
