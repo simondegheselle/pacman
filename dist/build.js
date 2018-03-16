@@ -2,10 +2,10 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-      value: true
+  value: true
 });
 var Pacman = exports.Pacman = {};
-
+window.Pacman = Pacman;
 Pacman.WALL = 0;
 Pacman.COOKIE = 1;
 Pacman.EMPTY = 2;
@@ -31,6 +31,20 @@ var NONE = exports.NONE = 4,
     COUNTDOWN = exports.COUNTDOWN = 8,
     EATEN_PAUSE = exports.EATEN_PAUSE = 9,
     DYING = exports.DYING = 10;
+
+Pacman.STATES = {
+  NONE: 4,
+  UP: 3,
+  LEFT: 2,
+  DOWN: 1,
+  RIGHT: 11,
+  WAITING: 5,
+  PAUSE: 6,
+  PLAYING: 7,
+  COUNTDOWN: 8,
+  EATEN_PAUSE: 9,
+  DYING: 10
+};
 
 },{}],2:[function(require,module,exports){
 'use strict';
@@ -289,18 +303,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _constants = require('./constants.js');
 
-var _map = require('./map.js');
-
-var _map2 = _interopRequireDefault(_map);
-
-var _player = require('./sprites/player.js');
-
-var _player2 = _interopRequireDefault(_player);
-
-var _ghost = require('./sprites/ghost.js');
-
-var _ghost2 = _interopRequireDefault(_ghost);
-
 var _gameMechanics = require('./game-mechanics');
 
 var _gameMechanics2 = _interopRequireDefault(_gameMechanics);
@@ -335,37 +337,6 @@ var Game = function (_GameMechanics) {
   }
 
   _createClass(Game, [{
-    key: 'startLevel',
-    value: function startLevel() {
-      this.player.newLevel();
-      var i = 0;
-      while (i < this.ghosts.length) {
-        this.ghosts[i].reset();
-        i += 1;
-      }
-      this.timerStart = this.tick;
-      this.setState(_constants.COUNTDOWN);
-    }
-  }, {
-    key: 'startNewGame',
-    value: function startNewGame() {
-      this.setState(_constants.WAITING);
-      this.level = 1;
-      this.player.reset();
-      this.map.initMap();
-      this.map.draw(this.ctx);
-      this.startLevel();
-    }
-  }, {
-    key: 'loseLife',
-    value: function loseLife() {
-      this.setState(_constants.WAITING);
-      this.player.loseLife();
-      if (this.player.getLives() > 0) {
-        this.startLevel();
-      }
-    }
-  }, {
     key: 'collided',
     value: function collided(player, ghost) {
       return Math.sqrt(Math.pow(ghost.x - player.x, 2) + Math.pow(ghost.y - player.y, 2)) < 10;
@@ -428,15 +399,6 @@ var Game = function (_GameMechanics) {
         this.ghosts[i].makeEatable(this.ctx);
       }
     }
-  }, {
-    key: 'completedLevel',
-    value: function completedLevel() {
-      this.setState(_constants.WAITING);
-      this.level += 1;
-      this.map.reset();
-      this.player.newLevel();
-      this.startLevel();
-    }
   }]);
 
   return Game;
@@ -444,7 +406,7 @@ var Game = function (_GameMechanics) {
 
 exports.default = Game;
 
-},{"./constants.js":1,"./game-mechanics":2,"./map.js":6,"./sprites/ghost.js":7,"./sprites/player.js":8}],4:[function(require,module,exports){
+},{"./constants.js":1,"./game-mechanics":2}],4:[function(require,module,exports){
 'use strict';
 
 var _game = require('./game.js');
@@ -455,6 +417,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var wrapper = document.getElementById('pacman');
 var game = new _game2.default(wrapper);
+window.Game = game;
 
 },{"./game.js":3}],5:[function(require,module,exports){
 'use strict';
@@ -738,21 +701,33 @@ var Ghost = function () {
 
       return x1 + x2;
     }
+
+    // TODO
+
   }, {
     key: 'isVunerable',
     value: function isVunerable() {
       return this.eatable !== null;
     }
+
+    // TODO
+
   }, {
     key: 'isDangerous',
     value: function isDangerous() {
       return this.eaten === null;
     }
+
+    // TODO
+
   }, {
     key: 'isHidden',
     value: function isHidden() {
       return !this.isVunerable() && !this.isDangerous();
     }
+
+    // TODO
+
   }, {
     key: 'getRandomDirection',
     value: function getRandomDirection() {
@@ -781,6 +756,9 @@ var Ghost = function () {
     value: function onWholeSquare(x) {
       return x % 10 === 0;
     }
+
+    // TODO
+
   }, {
     key: 'oppositeDirection',
     value: function oppositeDirection(dir) {

@@ -1,5 +1,5 @@
 export const Pacman = {};
-
+window.Pacman = Pacman;
 Pacman.WALL    = 0;
 Pacman.COOKIE = 1;
 Pacman.EMPTY   = 2;
@@ -150,3 +150,18 @@ export const NONE = 4,
       COUNTDOWN   = 8,
       EATEN_PAUSE = 9,
       DYING       = 10;
+
+Pacman.STATES = {
+  NONE: 4,
+  UP: 3,
+  LEFT: 2,
+  DOWN: 1,
+  RIGHT: 11,
+  WAITING: 5,
+  PAUSE: 6,
+  PLAYING: 7,
+  COUNTDOWN: 8,
+  EATEN_PAUSE: 9,
+  DYING: 10
+}
+

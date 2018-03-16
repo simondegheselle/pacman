@@ -9,13 +9,9 @@ import {
   KEY,
 } from './constants.js';
 
-import Map from './map.js';
-import Player from './sprites/player.js';
-import Ghost from './sprites/ghost.js';
-
 import GameMechanics from './game-mechanics';
 
-export default class Game extends GameMechanics {
+class Game extends GameMechanics {
 
   constructor(wrapper) {
     super(wrapper);
@@ -29,34 +25,6 @@ export default class Game extends GameMechanics {
     this.map = null;
     this.player = null;
     this.init(wrapper);
-  }
-
-  startLevel() {
-    this.player.newLevel();
-    let i = 0;
-    while (i < this.ghosts.length) {
-      this.ghosts[i].reset();
-      i += 1;
-    }
-    this.timerStart = this.tick;
-    this.setState(COUNTDOWN);
-  }
-
-  startNewGame() {
-    this.setState(WAITING);
-    this.level = 1;
-    this.player.reset();
-    this.map.initMap();
-    this.map.draw(this.ctx);
-    this.startLevel();
-  }
-
-  loseLife() {
-    this.setState(WAITING);
-    this.player.loseLife();
-    if (this.player.getLives() > 0) {
-      this.startLevel();
-    }
   }
 
   collided(player, ghost) {
@@ -120,12 +88,6 @@ export default class Game extends GameMechanics {
       this.ghosts[i].makeEatable(this.ctx);
     }
   }
-
-  completedLevel() {
-    this.setState(WAITING);
-    this.level += 1;
-    this.map.reset();
-    this.player.newLevel();
-    this.startLevel();
-  }
 }
+
+export default Game;

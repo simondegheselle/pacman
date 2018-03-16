@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "Press_Start_2P";
+  src: url("PressStart2P-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#pacman {
+  width: 342px;
+  margin: 20px auto;
+}
+
+.pacman-game {
+  margin-top: 100px;
+  color: #fff;
+}
+html {
+  background: #000;
+}
+body {
+  width: 342px;
+  margin: 0px auto;
+  font-family: "Press_Start_2P", cursive;
+}
+canvas {
+  font-family: "Press Start 2P", cursive;
+}
+a {
+  text-decoration: none;
+}

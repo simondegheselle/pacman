@@ -48,18 +48,22 @@ export default class Ghost {
     return x1 + x2;
   }
 
+  // TODO
   isVunerable() {
     return this.eatable !== null;
   }
 
+  // TODO
   isDangerous() {
     return this.eaten === null;
   }
 
+  // TODO
   isHidden() {
     return !this.isVunerable() && !this.isDangerous();
   }
 
+  // TODO
   getRandomDirection() {
     let moves;
     if (this.direction === LEFT || this.direction === RIGHT) {
@@ -85,6 +89,7 @@ export default class Ghost {
     return x % 10 === 0;
   }
 
+  // TODO
   oppositeDirection(dir) {
     let oppositeDirection;
     /* No switch statements allowed? Got a esinting error */
