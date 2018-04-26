@@ -22,3 +22,7 @@ Player.prototype.resetPlayerPosition = function() {
 Player.prototype.loseLife = function (){
   this.lives -= 1;
 }
+
+Player.prototype.getLives = function (){
+  return this.lives;
+}

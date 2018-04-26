@@ -7,8 +7,8 @@ class Ghost {
       x: 90,
       y: 80,
     };
-    this.direction = this.getRandomDirection();
-    this.due = this.getRandomDirection();
+    this.direction = LEFT;
+    this.due = LEFT;
     this.eatable = null;
     this.eaten = null;
     this.colour = colour;
@@ -48,66 +48,8 @@ class Ghost {
     return x1 + x2;
   }
 
-  // TODO
-  isVunerable() {
-    return this.eatable !== null;
-  }
-
-  // TODO
-  isDangerous() {
-    return this.eaten === null;
-  }
-
-  // TODO
-  isHidden() {
-    return !this.isVunerable() && !this.isDangerous();
-  }
-
-  // TODO
-  getRandomDirection() {
-    let moves;
-    if (this.direction === LEFT || this.direction === RIGHT) {
-      moves = [UP, DOWN];
-    } else {
-      moves = [LEFT, RIGHT];
-    }
-    return moves[Math.floor(Math.random() * 2)];
-  }
-
-  reset() {
-    this.eaten = null;
-    this.eatable = null;
-    this.position = {
-      x: 90,
-      y: 80,
-    };
-    this.direction = this.getRandomDirection();
-    this.due = this.getRandomDirection();
-  }
-
   onWholeSquare(x) {
     return x % 10 === 0;
-  }
-
-  // TODO
-  oppositeDirection(dir) {
-    let oppositeDirection;
-    /* No switch statements allowed? Got a esinting error */
-    switch (dir) {
-      case LEFT:
-        oppositeDirection = RIGHT;
-        break;
-      case RIGHT:
-        oppositeDirection = LEFT;
-        break;
-      case UP:
-        oppositeDirection = DOWN;
-        break;
-      case DOWN:
-        oppositeDirection = UP;
-        break;
-    }
-    return oppositeDirection;
   }
 
   makeEatable() {

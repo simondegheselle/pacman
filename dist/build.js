@@ -658,8 +658,8 @@ var Ghost = function () {
       x: 90,
       y: 80
     };
-    this.direction = this.getRandomDirection();
-    this.due = this.getRandomDirection();
+    this.direction = _constants.LEFT;
+    this.due = _constants.LEFT;
     this.eatable = null;
     this.eaten = null;
     this.colour = colour;
@@ -702,84 +702,10 @@ var Ghost = function () {
 
       return x1 + x2;
     }
-
-    // TODO
-
-  }, {
-    key: 'isVunerable',
-    value: function isVunerable() {
-      return this.eatable !== null;
-    }
-
-    // TODO
-
-  }, {
-    key: 'isDangerous',
-    value: function isDangerous() {
-      return this.eaten === null;
-    }
-
-    // TODO
-
-  }, {
-    key: 'isHidden',
-    value: function isHidden() {
-      return !this.isVunerable() && !this.isDangerous();
-    }
-
-    // TODO
-
-  }, {
-    key: 'getRandomDirection',
-    value: function getRandomDirection() {
-      var moves = void 0;
-      if (this.direction === _constants.LEFT || this.direction === _constants.RIGHT) {
-        moves = [_constants.UP, _constants.DOWN];
-      } else {
-        moves = [_constants.LEFT, _constants.RIGHT];
-      }
-      return moves[Math.floor(Math.random() * 2)];
-    }
-  }, {
-    key: 'reset',
-    value: function reset() {
-      this.eaten = null;
-      this.eatable = null;
-      this.position = {
-        x: 90,
-        y: 80
-      };
-      this.direction = this.getRandomDirection();
-      this.due = this.getRandomDirection();
-    }
   }, {
     key: 'onWholeSquare',
     value: function onWholeSquare(x) {
       return x % 10 === 0;
-    }
-
-    // TODO
-
-  }, {
-    key: 'oppositeDirection',
-    value: function oppositeDirection(dir) {
-      var oppositeDirection = void 0;
-      /* No switch statements allowed? Got a esinting error */
-      switch (dir) {
-        case _constants.LEFT:
-          oppositeDirection = _constants.RIGHT;
-          break;
-        case _constants.RIGHT:
-          oppositeDirection = _constants.LEFT;
-          break;
-        case _constants.UP:
-          oppositeDirection = _constants.DOWN;
-          break;
-        case _constants.DOWN:
-          oppositeDirection = _constants.UP;
-          break;
-      }
-      return oppositeDirection;
     }
   }, {
     key: 'makeEatable',
@@ -1035,11 +961,6 @@ var Player = function (_PlayerSprite) {
     key: 'getScore',
     value: function getScore() {
       return this.score;
-    }
-  }, {
-    key: 'getLives',
-    value: function getLives() {
-      return this.lives;
     }
   }, {
     key: 'move',
