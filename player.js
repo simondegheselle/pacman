@@ -1,16 +1,16 @@
-Player.reset = function() {
+Player.prototype.reset = function() {
   this.score = 0;
   this.lives = 3;
   this.eaten = 0;
   this.resetPlayerPosition();
 };
 
-Player.newLevel = function() {
+Player.prototype.newLevel = function() {
   this.eaten = 0;
   this.resetPlayerPosition();
 };
 
-Player.resetPlayerPosition = function() {
+Player.prototype.resetPlayerPosition = function() {
   this.position = {
     x: 90,
     y: 120,
@@ -19,6 +19,6 @@ Player.resetPlayerPosition = function() {
   this.due = DIRECTIONS.LEFT;
 };
 
-Player.loseLife() = function (){
+Player.prototype.loseLife = function (){
   this.lives -= 1;
 }

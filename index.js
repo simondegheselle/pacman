@@ -1,5 +1,6 @@
+const Ghost = window.Ghost;
+const Player = window.Player;
 const Game = window.Game;
-const Player = Game.player;
 
 const STATES = window.Pacman.STATES;
 const KEY = window.Pacman.KEY;

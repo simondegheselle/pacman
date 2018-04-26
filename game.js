@@ -8,7 +8,7 @@
   Game keyDown functie, reageert op key events van de speler
   Parameters: het event
 */
-Game.keyDown = function(ev) {
+Game.prototype.keyDown = function(ev) {
   if (ev.keyCode === KEY.N) {
     this.startNewGame();
   } else if (ev.keyCode === KEY.P && this.state === STATES.PAUSE) {
@@ -33,7 +33,7 @@ Game.keyDown = function(ev) {
   de map wordt getekend
   het level van het spel wordt gestart
 */
-Game.startNewGame = function() {
+Game.prototype.startNewGame = function() {
   this.setState(STATES.WAITING);
   this.level = 1;
   this.player.reset();
@@ -47,7 +47,7 @@ Game.startNewGame = function() {
   ook elke ghost die tot het game behoort moet gereset worden, we moeten hiervoor de array van ghosts overlopen (for loop of while loop)
   de state van het game mag op COUNTDOWN gezet worden --> we gaan beginnen aftellen
 */
-Game.startLevel = function() {
+Game.prototype.startLevel = function() {
   this.player.newLevel();
   for (let i = 0; i < this.ghosts.length; i++) {
     this.ghosts[i].reset();
@@ -61,7 +61,7 @@ Game.startLevel = function() {
   laat aan de speler weten dat hij een leven moet verliezen (attribuut leven van speler moet met 1 verminderen)
   als de speler nog levens heeft mag er een nieuw level gestart worden
 */
-Game.loseLife = function() {
+Game.prototype.loseLife = function() {
   this.setState(STATES.WAITING);
   this.player.loseLife();
   if (this.player.getLives() > 0) {
@@ -77,7 +77,7 @@ Game.loseLife = function() {
   en de speler wordt gereset door newLevel aan te roepen
   het level wordt gestart door de methode startLevel op te roepen
 */
-Game.completedLevel = function() {
+Game.prototype.completedLevel = function() {
   this.setState(STATES.WAITING);
   this.level += 1;
   this.map.reset();

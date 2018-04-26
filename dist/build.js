@@ -127,6 +127,24 @@ var GameMechanics = function () {
       this.ctx.fillText(text, position.x, position.y);
     }
   }, {
+    key: 'keyDown',
+    value: function keyDown(ev) {
+      if (ev.keyCode === _constants.KEY.N) {
+        this.startNewGame();
+      } else if (ev.keyCode === _constants.KEY.P && this.state === _constants.PAUSE) {
+        this.map.draw(this.ctx);
+        this.setState(this.stored);
+      } else if (ev.keyCode === _constants.KEY.P) {
+        this.stored = this.state;
+        this.setState(_constants.PAUSE);
+        this.map.draw(this.ctx);
+        this.dialog('Paused');
+      } else if (this.state !== _constants.PAUSE) {
+        return this.player.keyDown(ev);
+      }
+      return true;
+    }
+  }, {
     key: 'setState',
     value: function setState(nState) {
       this.state = nState;
@@ -389,6 +407,8 @@ var Game = function (_GameMechanics) {
   return Game;
 }(_gameMechanics2.default);
 
+window.Game = Game;
+
 exports.default = Game;
 
 },{"./constants.js":1,"./game-mechanics":2}],4:[function(require,module,exports){
@@ -399,10 +419,6 @@ var _game = require('./game.js');
 var _game2 = _interopRequireDefault(_game);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var wrapper = document.getElementById('pacman');
-var game = new _game2.default(wrapper);
-window.Game = game;
 
 },{"./game.js":3}],5:[function(require,module,exports){
 'use strict';
@@ -964,6 +980,7 @@ var Ghost = function () {
   return Ghost;
 }();
 
+window.Ghost = Ghost;
 exports.default = Ghost;
 
 },{"../constants.js":1}],8:[function(require,module,exports){
@@ -1101,6 +1118,7 @@ var Player = function (_PlayerSprite) {
   return Player;
 }(_playerSprite2.default);
 
+window.Player = Player;
 exports.default = Player;
 
 },{"../constants.js":1,"./playerSprite":9}],9:[function(require,module,exports){

@@ -90,4 +90,6 @@ class Game extends GameMechanics {
   }
 }
 
+window.Game = Game;
+
 export default Game;

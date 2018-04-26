@@ -10,7 +10,7 @@ import {
 
 import PlayerSprite from './playerSprite';
 
-export default class Player extends PlayerSprite {
+class Player extends PlayerSprite {
 
   constructor(game, map) {
     super(game, map);
@@ -114,3 +114,6 @@ export default class Player extends PlayerSprite {
     };
   }
 }
+
+window.Player = Player;
+export default Player;

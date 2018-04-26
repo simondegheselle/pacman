@@ -1,6 +1,6 @@
 import { UP, LEFT, DOWN, RIGHT, Pacman } from '../constants.js';
 
-export default class Ghost {
+class Ghost {
 
   constructor(game, map, colour) {
     this.position = {
@@ -301,3 +301,6 @@ export default class Ghost {
   }
 
 }
+
+window.Ghost = Ghost;
+export default Ghost;
