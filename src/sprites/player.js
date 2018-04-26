@@ -20,7 +20,6 @@ export default class Player extends PlayerSprite {
     this.due = null;
     this.lives = null;
     this.score = 5;
-    this.resetPlayerPosition();
   }
 
   addScore(nScore) {
@@ -40,31 +39,6 @@ export default class Player extends PlayerSprite {
 
   getLives() {
     return this.lives;
-  }
-
-  initLevel() {
-    this.score = 0;
-    this.lives = 3;
-    this.newLevel();
-  }
-
-  newLevel() {
-    this.resetPlayerPosition();
-    this.eaten = 0;
-  }
-
-  resetPlayerPosition() {
-    this.position = {
-      x: 90,
-      y: 120,
-    };
-    this.direction = LEFT;
-    this.due = LEFT;
-  }
-
-  reset() {
-    this.initLevel();
-    this.resetPlayerPosition();
   }
 
   move() {
