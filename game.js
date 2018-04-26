@@ -1,6 +1,3 @@
-const Game = window.Game;
-const STATES = window.Pacman.STATES;
-
 /*
   GAME API
   setState: een state instellen: WAITING, COUNTDOWN, PAUSE, PLAYING, EATEN_PAUSE, DYING
