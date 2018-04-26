@@ -1020,16 +1020,6 @@ var Player = function (_PlayerSprite) {
       return this.score;
     }
   }, {
-    key: 'loseLife',
-    value: function loseLife() {
-      this.lives -= 1;
-    }
-  }, {
-    key: 'getLives',
-    value: function getLives() {
-      return this.lives;
-    }
-  }, {
     key: 'move',
     value: function move() {
       var npos = null;

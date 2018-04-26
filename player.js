@@ -1,10 +1,5 @@
 // ADD FUCNTIONS TO IMPLEMENT
 
-// addScore(nScore)
-// getScore()
-// loseLife()
-// getLives()
-
 Player.reset = function() {
   this.score = 0;
   this.lives = 3;
@@ -25,3 +20,7 @@ Player.resetPlayerPosition = function() {
   this.direction = DIRECTIONS.LEFT;
   this.due = DIRECTIONS.LEFT;
 };
+
+Player.loseLife() = function (){
+  this.lives -= 1;
+}

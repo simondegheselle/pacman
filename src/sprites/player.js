@@ -33,14 +33,6 @@ export default class Player extends PlayerSprite {
     return this.score;
   }
 
-  loseLife() {
-    this.lives -= 1;
-  }
-
-  getLives() {
-    return this.lives;
-  }
-
   move() {
     let npos = null;
     let nextWhole = null;
