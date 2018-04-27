@@ -25,6 +25,7 @@ class Game extends GameMechanics {
     this.map = null;
     this.player = null;
     this.init(wrapper);
+    this.initialize();
   }
 
   keyDown(ev) {
@@ -47,6 +48,11 @@ class Game extends GameMechanics {
   collided(player, ghost) {
     return Math.sqrt(Math.pow(ghost.x - player.x, 2)
       + Math.pow(ghost.y - player.y, 2)) < 10;
+  }
+
+  drawMap() {
+    this.map.initMap();
+    this.map.draw(this.ctx);
   }
 
   mainLoop() {

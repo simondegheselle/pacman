@@ -4,6 +4,18 @@
   startLevel: start een nieuw level
 */
 
+Game.prototype.initialize = function() {
+  this.player = new Player(this, this.map);
+
+  this.ghostColors = ['#00FFDE', '#FF0000', '#FFB8DE', '#FFB847', '#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847'];
+
+  this.ghosts = [];
+
+  for (i = 0; i < this.ghostColors.length; i += 1) {
+    ghost = new Ghost(this, this.map, this.ghostColors[i]);
+    this.ghosts.push(ghost);
+  }
+}
 /*
   de state van het game wordt op WAITING gezet
   het level van het game wordt geïnitialiseerd op level 1
@@ -13,20 +25,10 @@
   het level van het spel wordt gestart
 */
 Game.prototype.startNewGame = function() {
-  this.player = new Player(this, this.map);
-
-  this.ghostColors = ['#00FFDE', '#FF0000', '#FFB8DE', '#FFB847', '#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847'];
-
-  for (i = 0; i < this.ghostColors.length; i += 1) {
-    ghost = new Ghost(this, this.map, this.ghostColors[i]);
-    this.ghosts.push(ghost);
-  }
-
   this.setState(STATES.WAITING);
   this.level = 1;
   this.player.reset();
-  this.map.initMap();
-  this.map.draw(this.ctx);
+  this.drawMap();
   this.startLevel();
 }
 
@@ -69,7 +71,7 @@ Game.prototype.loseLife = function() {
 Game.prototype.completedLevel = function() {
   this.setState(STATES.WAITING);
   this.level += 1;
-  this.map.reset();
+  this.drawMap();
   this.player.newLevel();
   this.startLevel();
 }

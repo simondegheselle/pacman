@@ -19,7 +19,6 @@ class Ghost {
 
   getNewCoord(dir, current) {
     let speed;
-    console.log(this.speed);
     if (this.isVunerable()) {
       speed = this.speed;
     } else if (this.isHidden()) {

@@ -312,6 +312,7 @@ var Game = function (_GameMechanics) {
     _this.map = null;
     _this.player = null;
     _this.init(wrapper);
+    _this.initialize();
     return _this;
   }
 
@@ -337,6 +338,12 @@ var Game = function (_GameMechanics) {
     key: 'collided',
     value: function collided(player, ghost) {
       return Math.sqrt(Math.pow(ghost.x - player.x, 2) + Math.pow(ghost.y - player.y, 2)) < 10;
+    }
+  }, {
+    key: 'drawMap',
+    value: function drawMap() {
+      this.map.initMap();
+      this.map.draw(this.ctx);
     }
   }, {
     key: 'mainLoop',
@@ -666,7 +673,6 @@ var Ghost = function () {
     key: 'getNewCoord',
     value: function getNewCoord(dir, current) {
       var speed = void 0;
-      console.log(this.speed);
       if (this.isVunerable()) {
         speed = this.speed;
       } else if (this.isHidden()) {
