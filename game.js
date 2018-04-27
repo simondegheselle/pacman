@@ -12,7 +12,7 @@ Game.prototype.initialize = function() {
   this.ghosts = [];
 
   for (i = 0; i < this.ghostColors.length; i += 1) {
-    ghost = new Ghost(this, this.map, this.ghostColors[i]);
+    let ghost = new Ghost(this, this.map, this.ghostColors[i]);
     this.ghosts.push(ghost);
   }
 }
