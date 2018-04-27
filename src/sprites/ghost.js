@@ -14,16 +14,17 @@ class Ghost {
     this.colour = colour;
     this.game = game;
     this.map = map;
+    this.speed = 0.25;
   }
 
   getNewCoord(dir, current) {
     let speed;
     if (this.isVunerable()) {
-      speed = 0.25;
+      speed = this.speed;
     } else if (this.isHidden()) {
-      speed = 2;
+      speed = this.speed * 8;
     } else {
-      speed = 0.5;
+      speed = this.speed * 2;
     }
     const xSpeed = dir === LEFT && -speed || dir === RIGHT && speed || 0;
     const ySpeed = dir === DOWN && speed || dir === UP && -speed || 0;
@@ -31,6 +32,14 @@ class Ghost {
     const x = this.addBounded(current.x, xSpeed);
     const y = this.addBounded(current.y, ySpeed);
     return { x, y };
+  }
+
+  getSpeed() {
+    return this.speed;
+  }
+
+  setSpeed(speed) {
+    return this.speed = speed;
   }
 
 

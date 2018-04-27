@@ -647,6 +647,7 @@ var Ghost = function () {
     this.colour = colour;
     this.game = game;
     this.map = map;
+    this.speed = 0.25;
   }
 
   _createClass(Ghost, [{
@@ -654,11 +655,11 @@ var Ghost = function () {
     value: function getNewCoord(dir, current) {
       var speed = void 0;
       if (this.isVunerable()) {
-        speed = 0.25;
+        speed = this.speed;
       } else if (this.isHidden()) {
-        speed = 2;
+        speed = this.speed * 8;
       } else {
-        speed = 0.5;
+        speed = this.speed * 2;
       }
       var xSpeed = dir === _constants.LEFT && -speed || dir === _constants.RIGHT && speed || 0;
       var ySpeed = dir === _constants.DOWN && speed || dir === _constants.UP && -speed || 0;
@@ -666,6 +667,16 @@ var Ghost = function () {
       var x = this.addBounded(current.x, xSpeed);
       var y = this.addBounded(current.y, ySpeed);
       return { x: x, y: y };
+    }
+  }, {
+    key: 'getSpeed',
+    value: function getSpeed() {
+      return this.speed;
+    }
+  }, {
+    key: 'setSpeed',
+    value: function setSpeed(speed) {
+      return this.speed = speed;
     }
 
     /* Keep this method  */

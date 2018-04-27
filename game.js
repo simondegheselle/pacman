@@ -51,6 +51,7 @@ Game.prototype.startLevel = function() {
   this.player.newLevel();
   for (let i = 0; i < this.ghosts.length; i++) {
     this.ghosts[i].reset();
+    this.ghosts[i].setSpeed(0.25 + this.level);
   }
   this.timerStart = this.tick;
   this.setState(STATES.COUNTDOWN);
