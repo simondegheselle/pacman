@@ -5,27 +5,6 @@
 */
 
 /*
-  Game keyDown functie, reageert op key events van de speler
-  Parameters: het event
-*/
-Game.prototype.keyDown = function(ev) {
-  if (ev.keyCode === KEY.N) {
-    this.startNewGame();
-  } else if (ev.keyCode === KEY.P && this.state === STATES.PAUSE) {
-    this.map.draw(this.ctx);
-    this.setState(this.stored);
-  } else if (ev.keyCode === KEY.P) {
-    this.stored = this.state;
-    this.setState(STATES.PAUSE);
-    this.map.draw(this.ctx);
-    this.dialog('Paused');
-  } else if (this.state !== STATES.PAUSE) {
-    return this.player.keyDown(ev);
-  }
-  return true;
-}
-
-/*
   de state van het game wordt op WAITING gezet
   het level van het game wordt geïnitialiseerd op level 1
   het player object van het game wordt gereset (terug op de begin positie plaatsen)
@@ -34,6 +13,15 @@ Game.prototype.keyDown = function(ev) {
   het level van het spel wordt gestart
 */
 Game.prototype.startNewGame = function() {
+  this.player = new Player(this, this.map);
+
+  this.ghostColors = ['#00FFDE', '#FF0000', '#FFB8DE', '#FFB847', '#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847','#FFB847'];
+
+  for (i = 0; i < this.ghostColors.length; i += 1) {
+    ghost = new Ghost(this, this.map, this.ghostColors[i]);
+    this.ghosts.push(ghost);
+  }
+
   this.setState(STATES.WAITING);
   this.level = 1;
   this.player.reset();
@@ -51,7 +39,7 @@ Game.prototype.startLevel = function() {
   this.player.newLevel();
   for (let i = 0; i < this.ghosts.length; i++) {
     this.ghosts[i].reset();
-    this.ghosts[i].setSpeed(0.25 + this.level);
+    this.ghosts[i].setSpeed(0.20 + this.level/8);
   }
   this.timerStart = this.tick;
   this.setState(STATES.COUNTDOWN);

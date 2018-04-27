@@ -14,15 +14,16 @@ class Ghost {
     this.colour = colour;
     this.game = game;
     this.map = map;
-    this.speed = 0.25;
+    this.speed = 0.02;
   }
 
   getNewCoord(dir, current) {
     let speed;
+    console.log(this.speed);
     if (this.isVunerable()) {
       speed = this.speed;
     } else if (this.isHidden()) {
-      speed = this.speed * 8;
+      speed = this.speed * 1;
     } else {
       speed = this.speed * 2;
     }
@@ -41,7 +42,6 @@ class Ghost {
   setSpeed(speed) {
     return this.speed = speed;
   }
-
 
   /* Keep this method  */
   addBounded(x1, x2) {

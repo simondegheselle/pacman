@@ -166,12 +166,6 @@ export default class GameMechanics {
     this.ctx = canvas.getContext('2d');
 
     this.map = new Map(blockSize);
-    this.player = new Player(this, this.map);
-
-    for (i = 0; i < len; i += 1) {
-      ghost = new Ghost(this, this.map, this.ghostColors[i]);
-      this.ghosts.push(ghost);
-    }
 
     this.map.draw(this.ctx);
 

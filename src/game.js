@@ -27,6 +27,23 @@ class Game extends GameMechanics {
     this.init(wrapper);
   }
 
+  keyDown(ev) {
+    if (ev.keyCode === KEY.N) {
+      this.startNewGame();
+    } else if (ev.keyCode === KEY.P && this.state === STATES.PAUSE) {
+      this.map.draw(this.ctx);
+      this.setState(this.stored);
+    } else if (ev.keyCode === KEY.P) {
+      this.stored = this.state;
+      this.setState(STATES.PAUSE);
+      this.map.draw(this.ctx);
+      this.dialog('Paused');
+    } else if (this.state !== STATES.PAUSE) {
+      return this.player.keyDown(ev);
+    }
+    return true;
+  }
+
   collided(player, ghost) {
     return Math.sqrt(Math.pow(ghost.x - player.x, 2)
       + Math.pow(ghost.y - player.y, 2)) < 10;

@@ -238,12 +238,6 @@ var GameMechanics = function () {
       this.ctx = canvas.getContext('2d');
 
       this.map = new _map2.default(blockSize);
-      this.player = new _player2.default(this, this.map);
-
-      for (i = 0; i < len; i += 1) {
-        ghost = new _ghost2.default(this, this.map, this.ghostColors[i]);
-        this.ghosts.push(ghost);
-      }
 
       this.map.draw(this.ctx);
 
@@ -322,6 +316,24 @@ var Game = function (_GameMechanics) {
   }
 
   _createClass(Game, [{
+    key: 'keyDown',
+    value: function keyDown(ev) {
+      if (ev.keyCode === _constants.KEY.N) {
+        this.startNewGame();
+      } else if (ev.keyCode === _constants.KEY.P && this.state === STATES.PAUSE) {
+        this.map.draw(this.ctx);
+        this.setState(this.stored);
+      } else if (ev.keyCode === _constants.KEY.P) {
+        this.stored = this.state;
+        this.setState(STATES.PAUSE);
+        this.map.draw(this.ctx);
+        this.dialog('Paused');
+      } else if (this.state !== STATES.PAUSE) {
+        return this.player.keyDown(ev);
+      }
+      return true;
+    }
+  }, {
     key: 'collided',
     value: function collided(player, ghost) {
       return Math.sqrt(Math.pow(ghost.x - player.x, 2) + Math.pow(ghost.y - player.y, 2)) < 10;
@@ -647,17 +659,18 @@ var Ghost = function () {
     this.colour = colour;
     this.game = game;
     this.map = map;
-    this.speed = 0.25;
+    this.speed = 0.02;
   }
 
   _createClass(Ghost, [{
     key: 'getNewCoord',
     value: function getNewCoord(dir, current) {
       var speed = void 0;
+      console.log(this.speed);
       if (this.isVunerable()) {
         speed = this.speed;
       } else if (this.isHidden()) {
-        speed = this.speed * 8;
+        speed = this.speed * 1;
       } else {
         speed = this.speed * 2;
       }
