@@ -1,0 +1,73 @@
+Arguments: 
+  /Users/simondegheselle/.nvm/versions/node/v8.4.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js deploy
+
+PATH: 
+  /Users/simondegheselle/.rvm/gems/ruby-2.4.0/bin:/Users/simondegheselle/.rvm/gems/ruby-2.4.0@global/bin:/Users/simondegheselle/.rvm/rubies/ruby-2.4.0/bin:/Users/simondegheselle/.nvm/versions/node/v8.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Users/simondegheselle/.rvm/bin:/usr/local/mysql/bin:/Users/simondegheselle/.rvm/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.4.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "workspace",
+    "version": "1.0.0",
+    "description": ",-----.,--.                  ,--. ,---.   ,--.,------.  ,------.     '  .--./|  | ,---. ,--.,--. ,-|  || o   \\  |  ||  .-.  \\ |  .---'     |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \\  :|  `--,      '  '--'\\|  |' '-' ''  ''  '\\ `-' | .'  /   |  ||  '--'  /|  `---.      `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'     -----------------------------------------------------------------",
+    "main": "main.js",
+    "scripts": {
+      "deploy": "cd build && now --public && now alias codefever"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "babel-preset-es2015": "^6.24.1"
+    },
+    "dependencies": {
+      "babelify": "^7.3.0",
+      "browserify": "^14.3.0",
+      "gulp": "^3.9.1",
+      "gulp-sourcemaps": "^2.6.0",
+      "vinyl-buffer": "^1.0.0",
+      "vinyl-source-stream": "^1.1.0",
+      "watchify": "^3.9.0"
+    },
+    "browserify": {
+      "transform": [
+        [
+          "babelify",
+          {
+            "presets": [
+              "es2015"
+            ]
+          }
+        ]
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c cd build && now --public && now alias codefever
+  Directory: /Users/simondegheselle/Documents/dev/projects/codefever/E2-stuff/pacman
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at emitTwo (events.js:125:13)
+      at ChildProcess.emit (events.js:213:7)
+      at maybeClose (internal/child_process.js:927:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)

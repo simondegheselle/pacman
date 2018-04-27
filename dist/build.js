@@ -127,24 +127,6 @@ var GameMechanics = function () {
       this.ctx.fillText(text, position.x, position.y);
     }
   }, {
-    key: 'keyDown',
-    value: function keyDown(ev) {
-      if (ev.keyCode === _constants.KEY.N) {
-        this.startNewGame();
-      } else if (ev.keyCode === _constants.KEY.P && this.state === _constants.PAUSE) {
-        this.map.draw(this.ctx);
-        this.setState(this.stored);
-      } else if (ev.keyCode === _constants.KEY.P) {
-        this.stored = this.state;
-        this.setState(_constants.PAUSE);
-        this.map.draw(this.ctx);
-        this.dialog('Paused');
-      } else if (this.state !== _constants.PAUSE) {
-        return this.player.keyDown(ev);
-      }
-      return true;
-    }
-  }, {
     key: 'setState',
     value: function setState(nState) {
       this.state = nState;

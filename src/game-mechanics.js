@@ -58,23 +58,6 @@ export default class GameMechanics {
     this.ctx.fillText(text, position.x, position.y);
   }
 
-  keyDown(ev) {
-    if (ev.keyCode === KEY.N) {
-      this.startNewGame();
-    } else if (ev.keyCode === KEY.P && this.state === PAUSE) {
-      this.map.draw(this.ctx);
-      this.setState(this.stored);
-    } else if (ev.keyCode === KEY.P) {
-      this.stored = this.state;
-      this.setState(PAUSE);
-      this.map.draw(this.ctx);
-      this.dialog('Paused');
-    } else if (this.state !== PAUSE) {
-      return this.player.keyDown(ev);
-    }
-    return true;
-  }
-
   setState(nState) {
     this.state = nState;
     this.stateChanged = true;
